@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 export default function ConnectToDB() {
     try {
-        mongoose.connect(process.env.MONGODB_URL, {
+        mongoose.connect(process.env.ATLAS_URL, {
             dbName: process.env.MONGODB_DB_NAME
         })
 
@@ -11,3 +11,9 @@ export default function ConnectToDB() {
         console.log("error occured", e)
     }
 }
+
+//----------- original one----------------
+// try {
+//         mongoose.connect(process.env.MONGODB_URL, {
+//             dbName: process.env.MONGODB_DB_NAME
+//         })
