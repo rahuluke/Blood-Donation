@@ -14,12 +14,12 @@ export async function GET() {
 
             let allData = await FAQs.find({})
 
-            return NextResponse.json({data: allData})
-        }else{
-            return NextResponse.json({data: allEntries})
+            return NextResponse.json({ data: allData })
+        } else {
+            return NextResponse.json({ data: allEntries })
         }
 
     } catch (err) {
-        return NextResponse.json({ message: "something went wrong" }, {status: 500})
+        return NextResponse.json({ message: "something went wrong" }, { status: 500 })
     }
 }

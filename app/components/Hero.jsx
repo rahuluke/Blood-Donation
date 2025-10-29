@@ -29,7 +29,7 @@ export default function Hero() {
     }, 4000);
 
     return (
-        <div className="md:px-4 mt-4">
+        <div className=" md:px-4 mt-4">
             <div className="container px-4 md:px-0 m-auto">
                 {/* <div className="crousel relative">
                     <button onClick={()=>{handlePrevButton()}} className="buttons-left absolute left-2 md:left-4 top-1/2 bg-white/50 rounded-full p-2 z-20"> <FaChevronLeft /> </button>
@@ -44,8 +44,9 @@ export default function Hero() {
                     <button onClick={() => { handlePrevButton() }} className="z-20 absolute top-1/2 bg-white/90 rounded-full p-1 left-4" ><FaChevronLeft size={15} /></button>
                     <button onClick={() => { handleNextButton() }} className="z-20 absolute top-1/2 bg-white/90 rounded-full p-1 right-4" ><FaChevronRight size={15} /></button>
                     <div className="img flex h-[30rem] transition-all duration-500 ease-in-out" style={{ transform: `translateX(${crousel * -100}%)` }}>
+
                         {image.map((url) => (
-                            <img src={url} alt={url} key={url} className="min-w-full object-cover object-center h-full opacity-20" />
+                            <img src={url} alt={url} key={url} className="min-w-full object-cover object-center h-full opacity-40" />
                         ))}
                     </div>
                 </div>

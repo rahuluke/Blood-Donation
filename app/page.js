@@ -10,7 +10,7 @@ export default function Home() {
 
       <div className="md:px-4">
         <div className="container m-auto px-4 md:px-0">
-          <div className="headingh text-2xl font-bold mt-8 text-zinc-700 text-center">
+          <div className="headingh text-3xl font-bold mt-8 text-zinc-700 text-center">
             Who are we
           </div>
         </div>

@@ -4,8 +4,8 @@ import BloodDB from '../components/BloodDB'
 export default function SearchBloodPage() {
     return (
         <>
-            <div className="about-heading min-h-[60vh] bg-red-500 text-white px-4 flex flex-col justify-center items-center relative z-30">
-            <div className="box absolute top-0 left-0 w-full h-full z-10 opacity-20">
+            <div className="about-heading min-h-[60vh] bg-black text-white px-4 flex flex-col justify-center items-center relative z-30">
+            <div className="box absolute top-0 left-0 w-full h-full z-10 opacity-30">
           <img
             src="/db.png"
             alt=""

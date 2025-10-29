@@ -50,7 +50,7 @@ export default function Navbar() {
           href={"/"}
           className="logo font-semibold text-xl lg:text-2xl text-white"
         >
-          Jeevan<span className="">Dhara</span>
+          Jeevan<span className="text-red-800">Dhara</span>
         </Link>
         <button
           className="forMobi lg:hidden"
@@ -64,14 +64,12 @@ export default function Navbar() {
           onClick={() => {
             handleHamburger();
           }}
-          className={`${
-            isOpen ? "flex" : "hidden"
-          } overlay top-0 left-0 h-screen w-screen bg-black/40 z-[30] fixed`}
+          className={`${isOpen ? "flex" : "hidden"
+            } overlay top-0 left-0 h-screen w-screen bg-black/40 z-[30] fixed`}
         ></div>
         <div
-          className={`${
-            isOpen ? "flex right-0" : "-right-[100%]"
-          } flex-col sidebar fixed top-0 h-screen bg-white w-60 text-neutral-900 py-3 px-4 z-[40] transition-all duration-300 ease-in-out`}
+          className={`${isOpen ? "flex right-0" : "-right-[100%]"
+            } flex-col sidebar fixed top-0 h-screen bg-white w-60 text-neutral-900 py-3 px-4 z-[40] transition-all duration-300 ease-in-out`}
         >
           <div className="header flex justify-end items-center">
             <button
