@@ -14,9 +14,9 @@ export default function LoginPage() {
     const getPassword = (e) => {
         setPassword(e.target.value)
     }
-
+////--------------------- http://localhost:3000/api/login ------change made here-----------------
     async function sendRequest() {
-        let res = await fetch("http://localhost:3000/api/login", {
+        let res = await fetch("/api/login", {
             method: "POST",
             body: JSON.stringify({ name, password })
         })
