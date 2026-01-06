@@ -2,13 +2,11 @@ import { NextResponse } from "next/server";
 
 export async function middleware(request) {
   const verifyToken = async (token) => {
-    return await fetch(`${request.nextUrl.origin}/api/verify`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    let req = await fetch("http://localhost:3000/api/verify", {
       body: JSON.stringify({ token }),
+      method: "POST",
     });
+    return req;
   };
 
   if (request.nextUrl.pathname.startsWith("/login")) {
@@ -16,26 +14,25 @@ export async function middleware(request) {
 
     if (token) {
       const response = await verifyToken(token.value);
-      if (response.status === 200) {
-        return NextResponse.redirect(new URL("/admin/bloods", request.url));
+      if (response.status == 200) {
+        return NextResponse.redirect(new URL("/admin/bloods", request.url)); // if token is vailed redirect the user
       }
     }
   }
-
   if (request.nextUrl.pathname.startsWith("/admin")) {
     const token = request.cookies.get("token");
 
-    if (!token) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-
-    const response = await verifyToken(token.value);
-    if (response.status !== 200) {
+    if (token) {
+      const response = await verifyToken(token.value);
+      if (response.status != 200) {
+        return NextResponse.redirect(new URL("/login", request.url)); // if token is vailed redirect the user
+      }
+    } else {
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }
 
-  if (request.nextUrl.pathname === "/admin") {
-    return NextResponse.redirect(new URL("/admin/bloods", request.url));
+  if (request.nextUrl.pathname == "/admin") {
+    return NextResponse.redirect(new URL("/admin/bloods", request.url)); // if token is vailed redirect the user
   }
 }
