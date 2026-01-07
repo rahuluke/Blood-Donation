@@ -16,7 +16,7 @@ export default function LoginPage() {
     }
 
     async function sendRequest() {
-        let res = await fetch("http://localhost:3000/api/login", {
+        let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
             method: "POST",
             body: JSON.stringify({ name, password })
         })
