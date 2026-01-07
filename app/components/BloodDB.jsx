@@ -7,7 +7,7 @@ export default function BloodDB() {
   const [loaded, setLoaded] = useState(false);
 
   const getAllRecords = async () => {
-    let res = await fetch("http://localhost:3000/api/blood_db");
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blood_db`);
     let data = await res.json();
     setAllRecords(data.data);
 
