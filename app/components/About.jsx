@@ -11,7 +11,7 @@ export default function AboutCmp() {
   const [About, setAbout] = useState(undefined)
 
   const getAbout = async () => {
-    let res = await fetch('http://localhost:3000/api/about')
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/about`)
     let data = await res.json()
     setAbout(data.data)
   }
