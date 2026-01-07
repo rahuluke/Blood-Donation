@@ -9,7 +9,7 @@ export default function BlogsCmp() {
   const [loaded, setLoaded] = useState(false);
 
   const getBlogs = async () => {
-    let res = await fetch("http://localhost:3000/api/blogs");
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`);
     let data = await res.json();
     setBlogs(data.data);
     setLoaded(true);
