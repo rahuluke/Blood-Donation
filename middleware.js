@@ -1,32 +1,38 @@
-// File: middleware.js
 import { NextResponse } from "next/server";
 
-// This middleware only handles routing based on cookies
-export function middleware(request) {
-  // Get token from cookies (if it exists)
-  const token = request.cookies.get("token")?.value;
-  const { pathname } = request.nextUrl;
+export async function middleware(request) {
+  const verifyToken = async (token) => {
+    let req = await fetch("http://localhost:3000/api/verify", {
+      body: JSON.stringify({ token }),
+      method: "POST",
+    });
+    return req;
+  };
 
-  // 1️⃣ Redirect logged-in users away from /login
-  if (pathname.startsWith("/login") && token) {
-    return NextResponse.redirect(new URL("/admin/bloods", request.url));
+  if (request.nextUrl.pathname.startsWith("/login")) {
+    const token = request.cookies.get("token");
+
+    if (token) {
+      const response = await verifyToken(token.value);
+      if (response.status == 200) {
+        return NextResponse.redirect(new URL("/admin/bloods", request.url)); // if token is vailed redirect the user
+      }
+    }
+  }
+  if (request.nextUrl.pathname.startsWith("/admin")) {
+    const token = request.cookies.get("token");
+
+    if (token) {
+      const response = await verifyToken(token.value);
+      if (response.status != 200) {
+        return NextResponse.redirect(new URL("/login", request.url)); // if token is vailed redirect the user
+      }
+    } else {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
   }
 
-  // 2️⃣ Protect /admin routes (redirect to login if no token)
-  if (pathname.startsWith("/admin") && !token) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  if (request.nextUrl.pathname == "/admin") {
+    return NextResponse.redirect(new URL("/admin/bloods", request.url)); // if token is vailed redirect the user
   }
-
-  // 3️⃣ Redirect /admin → /admin/bloods
-  if (pathname === "/admin") {
-    return NextResponse.redirect(new URL("/admin/bloods", request.url));
-  }
-
-  // 4️⃣ Let everything else pass through
-  return NextResponse.next();
 }
-
-// Optional: define which paths this middleware applies to
-export const config = {
-  matcher: ["/login", "/admin/:path*"], // middleware will run for /login and all /admin routes
-};
