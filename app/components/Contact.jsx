@@ -13,7 +13,7 @@ export default function Contact({ requestMethod }) {
   const [message, setMessage] = useState("");
 
   const submitRequest = async () => {
-    let data = await fetch(`http://localhost:3000/api/${requestMethod}`, {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${requestMethod}`, {
       method: "POST",
       body: JSON.stringify({
         firstName,
