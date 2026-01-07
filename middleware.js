@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function middleware(request) {
   const verifyToken = async (token) => {
-    let req = await fetch("http://localhost:3000/api/verify", {
+    let req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/verify`, {
       body: JSON.stringify({ token }),
       method: "POST",
     });
