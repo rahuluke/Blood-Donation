@@ -42,7 +42,7 @@ export default function AdminPannel() {
   }
 
   async function removeToken() {
-    let res = await fetch("http://localhost:3000/api/logout", {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/logout`, {
       method: "POST",
     });
 
