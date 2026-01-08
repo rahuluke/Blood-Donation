@@ -8,7 +8,6 @@ export async function middleware(request) {
     });
     return req;
   };
-  console.log("MONGODB_URL =", process.env.MONGODB_URL);
 
 
   if (request.nextUrl.pathname.startsWith("/login")) {
