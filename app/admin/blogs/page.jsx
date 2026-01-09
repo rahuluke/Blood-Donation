@@ -11,13 +11,13 @@ export default function BloodsPage() {
   const [render, setRender] = useState(false);
 
   const getAllBlogs = async () => {
-    let res = await fetch("http://localhost:3000/api/blogs");
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`);
     let data = await res.json();
     setBlogs(data.data);
   };
 
   const addFeild = async () => {
-    let data = await fetch("http://localhost:3000/api/admin/blogs", {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
       method: "POST",
     });
 
@@ -30,7 +30,7 @@ export default function BloodsPage() {
   };
 
   const removeFeild = async (id) => {
-    let data = await fetch("http://localhost:3000/api/admin/blogs", {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
       method: "DELETE",
       body: JSON.stringify({ id }),
     });
@@ -99,7 +99,7 @@ export default function BloodsPage() {
   };
 
   const updateRecords = async () => {
-    let data = await fetch("http://localhost:3000/api/admin/blogs", {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
       method: "PUT",
       body: JSON.stringify({ AllRecords: blogs }),
     });
