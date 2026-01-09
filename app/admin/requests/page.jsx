@@ -10,7 +10,7 @@ export default function RequestsPage() {
   const [render, setRender] = useState(false)
 
   const getAllRequests = async () => {
-    let res = await fetch('http://localhost:3000/api/requests')
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/requests`)
     let data = await res.json()
     setRequests(data.data)
   }
@@ -19,7 +19,7 @@ export default function RequestsPage() {
     let newData = [...Requests]
     // newData.splice(index, 1)
 
-    let data = await fetch('http://localhost:3000/api/admin/requests', {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/requests`, {
       method: "DELETE",
       body: JSON.stringify({ id: newData[index]._id })
     })
