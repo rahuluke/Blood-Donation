@@ -9,7 +9,7 @@ export default function AdminAbout() {
     const [About, setAbout] = useState([])
 
     const getAllAbout = async () => {
-        let res = await fetch('http://localhost:3000/api/about')
+        let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/about`)
         let data = await res.json()
         setAbout(data.data)
     }
@@ -48,7 +48,7 @@ export default function AdminAbout() {
     }
 
     const updateData = async () => {
-        let res = await fetch('http://localhost:3000/api/admin/about', {
+        let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/about`, {
             method: "POST",
             body: JSON.stringify({ AllAbout: About })
         })
