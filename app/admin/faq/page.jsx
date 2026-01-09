@@ -9,7 +9,7 @@ export default function AdminFAQs() {
   const [FAQs, setFAQs] = useState([])
 
   const getAllFAQs = async () => {
-    let res = await fetch('http://localhost:3000/api/faq')
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/faq`)
     let data = await res.json()
     setFAQs(data.data)
   }
@@ -27,7 +27,7 @@ export default function AdminFAQs() {
   }
 
   const updateData = async () => {
-    let res = await fetch('http://localhost:3000/api/admin/faq', {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/faq`, {
       method: "POST",
       body: JSON.stringify({ AllFAQs: FAQs })
     })
