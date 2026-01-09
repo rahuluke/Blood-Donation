@@ -13,13 +13,13 @@ export default function BloodsPage() {
     const [render, setRender] = useState(false)
 
     const getAllDonors = async () => {
-        let res = await fetch('http://localhost:3000/api/blood_db')
+        let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blood_db`)
         let data = await res.json()
         setDonors(data.data)
     }
 
     const addFeild = async () => {
-        let data = await fetch('http://localhost:3000/api/admin/blood_db', {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blood_db`, {
             method: "POST",
         })
 
@@ -33,7 +33,7 @@ export default function BloodsPage() {
     }
 
     const removeFeild = async (id) => {
-        let data = await fetch('http://localhost:3000/api/admin/blood_db', {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blood_db`, {
             method: "DELETE",
             body: JSON.stringify({ id })
         })
@@ -99,7 +99,7 @@ export default function BloodsPage() {
     }
 
     const updateRecords = async () => {
-        let data = await fetch("http://localhost:3000/api/admin/blood_db", {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blood_db`, {
             method: "PUT",
             body: JSON.stringify({ AllRecords: Donors })
         })
