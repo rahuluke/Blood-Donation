@@ -9,7 +9,7 @@ export default function DonorsPage() {
     const [render, setRender] = useState(false)
 
     const getAllDonors = async () => {
-        let res = await fetch('http://localhost:3000/api/donate')
+        let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/donate`)
         let data = await res.json()
         setDonors(data.data)
     }
@@ -18,7 +18,7 @@ export default function DonorsPage() {
         let newData = [...Donors]
         // newData.splice(index, 1)
 
-        let data = await fetch('http://localhost:3000/api/admin/donor', {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/donate`, {
             method: "DELETE",
             body: JSON.stringify({ id: newData[index]._id })
         })
