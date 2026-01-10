@@ -97,17 +97,19 @@ export async function PUT(req, res) {
 
             if (isVailed) {
                 try {
-                  await  ConnectToDB();
+                await ConnectToDB();
+    for (const item of AllRecords) {
+    if (!item._id) continue; // skip invalid entries
+    await Doners.findByIdAndUpdate(item._id, {
+        name: item.name,
+        region: item.region,
+        age: item.age,
+        bloodType: item.bloodType,
+        quantity: item.quantity
+    });
+}
 
-                    for (const item of AllRecords) {
-                await Doners.findByIdAndUpdate(item._id, {
-                name: item.name,
-                region: item.region,
-                age: item.age,
-                bloodType: item.bloodType,
-                quantity: item.quantity
-            });
-        }
+return NextResponse.json({ message: "Update Successful" });
 
 
                     return NextResponse.json({ message: "Update Sucessfull" });
