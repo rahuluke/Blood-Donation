@@ -19,7 +19,7 @@ export async function DELETE(req, res) {
             if (isVailed) {
                 try {
                     ConnectToDB();
-                    await Doners.findByIdAndDelete({ _id: id })
+                    await Doners.findByIdAndDelete(id);
                     return NextResponse.json({ message: "Item removed sucessfully" }, { status: 200 })
                 } catch (error) {
                     console.log(error);
@@ -54,7 +54,7 @@ export async function POST(req, res) {
 
             if (isVailed) {
                 try {
-                    ConnectToDB();
+                   await ConnectToDB();
                     await Doners.create({
                         name: "Enter name",
                         region: "" ,
@@ -97,17 +97,18 @@ export async function PUT(req, res) {
 
             if (isVailed) {
                 try {
-                    ConnectToDB();
+                  await  ConnectToDB();
 
-                    AllRecords.map(async (item) => {
-                        await Doners.findByIdAndUpdate(item._id, {
-                            name: item.name,
-                            region: item.region ,
-                            age: item.age,
-                            bloodType: item.bloodType,
-                            quantity: item.quantity
-                        });
-                    })
+                    for (const item of AllRecords) {
+                await Doners.findByIdAndUpdate(item._id, {
+                name: item.name,
+                region: item.region,
+                age: item.age,
+                bloodType: item.bloodType,
+                quantity: item.quantity
+            });
+        }
+
 
                     return NextResponse.json({ message: "Update Sucessfull" });
                 } catch (error) {
