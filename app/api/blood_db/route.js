@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
 
     try {
-        ConnectToDB()
+       await ConnectToDB()
 
         let allEntries = await Doners.find({})
         return NextResponse.json({ data: allEntries })
