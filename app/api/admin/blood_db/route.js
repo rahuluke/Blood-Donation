@@ -4,42 +4,50 @@ import jsonwebtoken from "jsonwebtoken";
 import { cookies } from "next/headers";
 import ConnectToDB from "@/DB/ConnectToDB";
 
-export async function DELETE(req, res) {
+export async function DELETE(req, { params }) {
+    const { id } = params;
 
-    const { id } = await req.json()
-    const cookieStore = cookies();
-    const token = cookieStore.get("token");
+    try {
+        // Get token from cookies
+        const token = cookies().get("token")?.value;
 
-
-    if (token) {
-        // checks if token is vailed or not
-        try {
-            let isVailed = jsonwebtoken.verify(token.value, process.env.JWT_SECRET);
-
-            if (isVailed) {
-                try {
-                 await ConnectToDB();
-                    await Doners.findByIdAndDelete(id);
-                    return NextResponse.json({ message: "Item removed sucessfully" }, { status: 200 })
-                } catch (error) {
-                    console.log(error);
-                    return NextResponse.json(
-                        { message: "Something went wrong" },
-                        { status: 500 }
-                    );
-                }
-                // return NextResponse.json({ messege: "token is vailed" }, {status: 200})
-            }
-        } catch (error) {
-            // return NextResponse.json({ messege: "token is not vailed" }, {status: 401})
-            return NextResponse.json({ message: "Not Authorized" }, { status: 302 });
+        if (!token) {
+            return NextResponse.json(
+                { message: "Not Authorized" },
+                { status: 401 }
+            );
         }
-    } else {
-        return NextResponse.json({ message: "Not Authorized" }, { status: 302 });
+
+        // Verify JWT
+        jwt.verify(token, process.env.JWT_SECRET);
+
+        // Connect to DB
+        await ConnectToDB();
+
+        // Delete donor
+        const deleted = await Doners.findByIdAndDelete(id);
+
+        if (!deleted) {
+            return NextResponse.json(
+                { message: "Item not found" },
+                { status: 404 }
+            );
+        }
+
+        return NextResponse.json(
+            { message: "Item removed successfully" },
+            { status: 200 }
+        );
+
+    } catch (error) {
+        console.error("DELETE ERROR:", error);
+
+        return NextResponse.json(
+            { message: "Internal Server Error" },
+            { status: 500 }
+        );
     }
-
 }
-
 
 export async function POST(req, res) {
 
