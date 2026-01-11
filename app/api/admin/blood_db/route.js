@@ -18,7 +18,7 @@ export async function DELETE(req, res) {
 
             if (isVailed) {
                 try {
-                    ConnectToDB();
+                 await ConnectToDB();
                     await Doners.findByIdAndDelete(id);
                     return NextResponse.json({ message: "Item removed sucessfully" }, { status: 200 })
                 } catch (error) {
