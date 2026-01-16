@@ -17,7 +17,7 @@ export default function BloodsPage() {
   };
 
   const addFeild = async () => {
-    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs`, {
       method: "POST",
     });
 
@@ -30,7 +30,7 @@ export default function BloodsPage() {
   };
 
   const removeFeild = async (id) => {
-    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs`, {
       method: "DELETE",
       body: JSON.stringify({ id }),
     });
@@ -99,7 +99,7 @@ export default function BloodsPage() {
   };
 
   const updateRecords = async () => {
-    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs`, {
       method: "PUT",
       body: JSON.stringify({ AllRecords: blogs }),
     });
