@@ -27,7 +27,7 @@ export default function AdminFAQs() {
   }
 
   const updateData = async () => {
-    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/faq`, {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/faq`, {
       method: "POST",
       body: JSON.stringify({ AllFAQs: FAQs })
     })
