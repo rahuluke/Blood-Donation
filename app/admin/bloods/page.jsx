@@ -19,7 +19,7 @@ export default function BloodsPage() {
     }
 
     const addFeild = async () => {
-        let data = await fetch(`https://jeevandhara.onrender.com/api/blood_db`, {
+        let data = await fetch(`https://jeevandhara.onrender.com/api/admin/blood_db`, {
             method: "POST",
         })
 
