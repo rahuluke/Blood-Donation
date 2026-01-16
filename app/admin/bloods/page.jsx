@@ -19,7 +19,7 @@ export default function BloodsPage() {
     }
 
     const addFeild = async () => {
-        let data = await fetch(`https://jeevandhara.onrender.com/api/admin/blood_db`, {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blood_db`, {
             method: "POST",
         })
 
@@ -33,7 +33,7 @@ export default function BloodsPage() {
     }
 
     const removeFeild = async (id) => {
-        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blood_db`, {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blood_db`, {
             method: "DELETE",
             body: JSON.stringify({ id })
         })
@@ -99,7 +99,7 @@ export default function BloodsPage() {
     }
 
     const updateRecords = async () => {
-        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blood_db`, {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blood_db`, {
             method: "PUT",
             body: JSON.stringify({ AllRecords: Donors })
         })
