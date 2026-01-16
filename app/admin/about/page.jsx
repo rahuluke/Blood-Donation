@@ -48,7 +48,7 @@ export default function AdminAbout() {
     }
 
     const updateData = async () => {
-        let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/about`, {
+        let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/about`, {
             method: "POST",
             body: JSON.stringify({ AllAbout: About })
         })
