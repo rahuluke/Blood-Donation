@@ -18,7 +18,7 @@ export default function DonorsPage() {
         let newData = [...Donors]
         // newData.splice(index, 1)
 
-        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/donate`, {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/donate`, {
             method: "DELETE",
             body: JSON.stringify({ id: newData[index]._id })
         })
