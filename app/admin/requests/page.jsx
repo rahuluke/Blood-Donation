@@ -19,7 +19,7 @@ export default function RequestsPage() {
     let newData = [...Requests]
     // newData.splice(index, 1)
 
-    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/requests`, {
+    let data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/requests`, {
       method: "DELETE",
       body: JSON.stringify({ id: newData[index]._id })
     })
