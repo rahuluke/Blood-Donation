@@ -9,7 +9,7 @@ export default function BloagContent({ params }) {
   const [found, setFound] = useState(undefined);
 
   const getData = async () => {
-    let res = await fetch("http://localhost:3000/api/blog", {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog`, {
       method: "POST",
       body: JSON.stringify({ id: params.slug }),
     });
